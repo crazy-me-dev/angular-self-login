@@ -1,0 +1,49 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+      {{ title }}
+    </div>
+    <div class="panel-body">
+      <form [formGroup]="angForm" #updateform="ngForm" novalidate>
+        <div class="form-group">
+          <label class="col-md-4">Distance</label>
+          <input type="text" class="form-control" formControlName="distance" #distance [(ngModel)] = "data.distance"/>
+        </div>
+        <div *ngIf="angForm.controls['distance'].invalid && (angForm.controls['distance'].dirty || angForm.controls['distance'].touched)" class="alert alert-danger">
+          <div *ngIf="angForm.controls['distance'].errors.required">
+              distance is required.
+          </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4">StartDate</label>
+            <input type="text" class="form-control" formControlName="startDate" #startDate [(ngModel)] = "data.startDate"/>
+          </div>
+          <div *ngIf="angForm.controls['startDate'].invalid && (angForm.controls['startDate'].dirty || angForm.controls['startDate'].touched)" class="alert alert-danger">
+            <div *ngIf="angForm.controls['startDate'].errors.required">
+                startDate is required.
+            </div>
+          </div>
+          <div class="form-group">
+              <label class="col-md-4">EndDate</label>
+              <input type="text" class="form-control" formControlName="endDate" #endDate [(ngModel)] = "data.endDate"/>
+            </div>
+            <div *ngIf="angForm.controls['endDate'].invalid && (angForm.controls['endDate'].dirty || angForm.controls['endDate'].touched)" class="alert alert-danger">
+              <div *ngIf="angForm.controls['endDate'].errors.required">
+                  endDate is required.
+              </div>
+            </div>
+        <div class="form-group">
+          <label class="col-md-4">commite</label>
+          <input type="text" class="form-control" formControlName="commite" #commite [(ngModel)] = "data.commite" />
+        </div>
+        <div *ngIf="angForm.controls['commite'].invalid && (angForm.controls['commite'].dirty || angForm.controls['commite'].touched)" class="alert alert-danger">
+          <div *ngIf="angForm.controls['commite'].errors.required">
+              commite is required.
+          </div>
+        </div>
+          <!-- <div class="form-group">
+            <button (click)="updateData(distance.value, startdate.value, enddate.value, commite.value)" [disabled]="angForm.pristine || angForm.invalid" class="btn btn-primary">Update</button>
+          </div> -->
+          <button [disabled]="angForm.pristine || angForm.invalid" class="btn btn-primary" (click)="onFormSubmit(updateform.value)" type="submit">update</button>
+      </form>
+    </div>
+  </div>

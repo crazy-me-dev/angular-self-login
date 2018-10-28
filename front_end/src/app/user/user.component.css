@@ -1,0 +1,31 @@
+.container {
+  min-height: 40vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.4rem;
+  color: #fff;
+  flex-direction: column;
+}
+
+.btn {
+  margin-top: 1.2rem;
+}
+
+.position {
+  padding-left: 150vh;
+  padding-bottom: 1vh;
+}
+
+.rounded {
+  border-radius: .25rem!important;
+}
+.text-center {
+  text-align: center!important;
+}
+.size {
+  width: 200px;
+  height: 200px; 
+
+}

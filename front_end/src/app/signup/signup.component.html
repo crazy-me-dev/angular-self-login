@@ -1,0 +1,86 @@
+<div class="signup-form-container">
+  <div class="form-container">
+    <form #signupForm="ngForm" (ngSubmit)="onFormSubmit(signupForm)" autocomplete="false" class="form">
+      <h4 class="form-header">Sign up
+        <i class="fa fa-sign-in" aria-hidden="true"></i>
+      </h4>
+      <div class="control">
+        <label for="name">UserName</label>
+        <input ngModel #name="ngModel" minlength="3" name="name" required id="name" type="text">
+        <div class="form-error" *ngIf="name.touched && !name.valid">
+          <div *ngIf="name.errors.required">
+            Name is required
+          </div>
+          <div *ngIf="name.errors.minlength">
+            Name must be at least 3 characters long.
+          </div>
+        </div>
+      </div>
+      <!-- <div class="control">
+        <label for="phone">Phone</label>
+        <input ngModel #phone="ngModel" pattern="[0-9]{10}" name="phone" required id="phone" type="text">
+        <div class="form-error" *ngIf="phone.touched && !phone.valid">
+          <div *ngIf="phone.errors.required">
+            Phone is required
+          </div>
+          <div *ngIf="phone.errors.pattern">
+            Phone number must be 10 digit.
+          </div>
+        </div>
+      </div> -->
+      <div class="control">
+        <label for="email">Email</label>
+        <input ngModel #email="ngModel" email="true" name="email" required id="email" type="text">
+        <div class="form-error" *ngIf="email.touched && !email.valid">
+          <div *ngIf="email.errors.required">
+            Email is required
+          </div>
+          <div *ngIf="email.errors.email && !email.errors.required">
+            Invalid Email address.
+          </div>
+        </div>
+      </div>
+      <div class="control">
+        <label for="password">Password</label>
+        <input ngModel #password="ngModel" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" minlength="6" name="password" required autocomplete="new-password" id="password" type="password">
+        <div class="form-error" *ngIf="password.touched && !password.valid">
+          <div *ngIf="password.errors.required">
+            Password is required
+          </div>
+          <div *ngIf="password.errors.minlength">
+            Password must be at least 6 characters long.
+          </div>
+          <div *ngIf="password.errors.pattern">
+            Password must all characters. 
+          </div>
+        </div>
+      </div>
+      <div class="control">
+        <label for="ConfirmPassword">Confirm Password</label>
+        <input ngModel #confirmpassword="ngModel" name="confirmpassword" required autocomplete="new-password" id="confirmpassword" type="password">
+        <div class="form-error" [hidden]="confirmpassword.value == password.value">
+          <!-- <div *ngIf="confirmpassword.errors.required">
+            Confirm Password is required
+          </div> -->
+          <!-- <div *ngIf="confirmpassword.errors.minlength">
+            Confirm Password must be at least 6 characters long.
+          </div> -->
+          <div class="alert alert-danger">
+            Password mismatch
+          </div>
+        </div>
+      </div>
+      <div class="control">
+        <button [disabled]="signupForm.invalid" class="btn" type="submit">Signup</button>
+        <p class="alter-way">
+          <a [routerLink]="'/login'">Already have an account?</a>
+        </p>
+      </div>
+      <div class="social-links-container">
+        <!-- <div class="hr"></div> -->
+        <!-- <div class="tag">Or, Sign in with</div> -->
+        <!-- <app-social-links></app-social-links> -->
+      </div>
+    </form>
+  </div>
+</div>

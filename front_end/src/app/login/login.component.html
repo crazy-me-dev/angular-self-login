@@ -1,0 +1,52 @@
+<div class="login-form-container">
+  <div class="form-container">
+    <form #loginForm="ngForm" autocomplete="false" class="form">
+      <h4 class="form-header">
+        Login
+        <!-- <i class="fa fa-user-circle-o" aria-hidden="true"></i> -->
+      </h4>
+      <div class="control">
+        <label for="email">Email</label>
+        <input ngModel #emailField="ngModel" name="email" id="email" email="true" required type="email">
+        <div class="form-error" *ngIf="emailField.touched && !emailField.valid">
+          <div *ngIf="emailField.errors.required">
+            Email is required
+          </div>
+          <div *ngIf="emailField.errors.email && !emailField.errors.required">
+            Invalid email address
+          </div>
+        </div>
+      </div>
+      <div class="control">
+        <label for="password">Password</label>
+        <input ngModel #password="ngModel" minlength="6" name="password" autocomplete="new-password" id="password" required type="password">
+        <div class="form-error" *ngIf="password.touched && !password.valid">
+          <div *ngIf="password.errors.required">
+            Password is required
+          </div>
+          <div *ngIf="password.errors.minlength">
+            Password must be at least 6 characters long.
+          </div>
+        </div>
+      </div>
+      <div class="control login-button-area">
+        <button [disabled]="loginForm.invalid" class="btn login-button" (click)="onFormSubmit(loginForm.value)" type="submit">Login</button>
+        <p class="alter-way">
+          <a [routerLink]="'/signup'">Create a new account</a>
+        </p>
+      </div>
+      <div class="social-links-container">
+        <a class="btn btn-block btn-social btn-facebook btn" (click)="socialSignIn('facebook')"> 
+          <i class="fa fa-facebook"></i> Facebook
+        </a>
+        <a class="btn btn-block btn-social btn-google-plus" (click)="socialSignIn('google')">
+          <i class="fa fa-google-plus"></i> Google
+        </a>
+      </div>
+      
+    </form>
+    
+    <!-- <div class="hr"></div> -->
+    <!-- <div class="tag">Or, Sign in with</div> -->
+  </div>
+</div>
