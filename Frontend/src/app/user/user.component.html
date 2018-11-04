@@ -1,0 +1,63 @@
+<div class="container">
+  <input type="file" (change)="onFileChanged($event)" style="display: none"
+  #fileInput>
+  <div class="text-center">
+      <img src = {{getAvatarimage()}} class="size" (click)="fileInput.click()">
+  </div>
+  <button class="btn" (click)="onUpload()">Upload!</button>
+  <button class="btn" (click)="logout()">logout</button>
+</div>
+<div style="text-align:center">
+  <h1>
+    Welcome to {{title}}!!
+  </h1>
+
+  <input ngModel #name="ngModel" minlength="3" name="name" required id="name" type="text">
+  <input type="date" class="form-control" formControlName="startDate1"   #startDate1
+               value="2018-01-01"
+               min="2018-01-01" max="2018-12-31" />
+  <input type="date" class="form-control" formControlName="endDate1"   #endDate1
+               value="2018-12-31"
+               min="2018-01-01" max="2018-12-31" />
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <ul class="nav navbar-nav">
+        <li class="active">
+          <a [routerLink]="'/create'">Create</a>
+        </li>    
+      </ul>
+    </div>
+  </nav>
+</div>
+
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <td>Distance</td>
+        <td>StartDate</td>
+        <td>EndDate</td>
+        <td>Average</td>
+        <!-- <td colspan="2">Actions</td> -->
+    </tr>
+    </thead>
+  
+    <tbody>
+        <tr *ngFor="let data of datas">
+            <ng-container *ngIf="data.distance.includes(name.value) && 
+            (
+              (startDate1.value<=data.startDate && endDate1.value>=data.endDate) || 
+              (startDate1.value>=data.startDate && endDate1.value<=data.endDate) ||
+              (startDate1.value<=data.startDate && endDate1.value<=data.endDate && endDate1.value>=data.startDate) ||
+              (startDate1.value>=data.startDate && endDate1.value>=data.endDate && startDate1.value<=data.endDate)
+            )">
+            <td>{{ data.distance }}</td>
+            <td>{{ data.startDate }}</td>
+            <td>{{ data.endDate }}</td>
+            <!-- <td>{{ data.commite }}</td> -->
+            <td>{{average(data)}}</td>
+            <td><a [routerLink]="['/edit', data._id]" class="btn btn-primary">Edit</a></td>
+            <td><button (click)="deletedata(data._id)"  class="btn btn-danger">Delete</button></td>
+            </ng-container>
+        </tr>
+    </tbody>
+  </table>
