@@ -9,7 +9,7 @@
     "cors": "^2.8.4",
     "crypto": "^1.0.1",
     "express": "^4.10.8",
-    "express-fileupload": "^0.4.0",
+    "express-fileupload": "^1.1.9",
     "fileupload": "^1.0.0",
     "jsonwebtoken": "^8.3.0",
     "method-override": "^2.3.10",
